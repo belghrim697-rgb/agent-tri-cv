@@ -1,0 +1,109 @@
+<mxfile host="65bd71144e">
+    <diagram id="agent-tri-cv-architecture" name="Architecture Agent Tri CV">
+        <mxGraphModel dx="1008" dy="899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="800" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Agent Tri CV - Architecture Complète" style="text;html=1;fontSize=24;fontStyle=1;align=center;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="100" y="20" width="1000" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="📥 ENTRÉE" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#0066CC;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="80" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="📄 PDF/DOCX&#xa;Fichier CV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F4F8;strokeColor=#0066CC;fontSize=11;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="120" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="⚙️ BACKEND (Python/Flask)" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#FF6600;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="80" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="🔍 TextExtractor&#xa;• Extraction PDF/DOCX&#xa;• Nettoyage texte&#xa;• Extraction dates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E8;strokeColor=#FF6600;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="250" y="120" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="🎯 CVScorer&#xa;• Scoring 6 catégories&#xa;• Calcul expérience&#xa;• Filtres KO&#xa;• JSON résultats" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E8;strokeColor=#FF6600;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="390" y="120" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="💾 DONNÉES (JSON)" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#009900;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="80" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="📋 keywords.json&#xa;Mots-clés paramétrés&#xa;(6 catégories)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8E8;strokeColor=#009900;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="120" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="📊 scoring.json&#xa;Seuils &amp; Barèmes&#xa;(Statuts, points)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8E8;strokeColor=#009900;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="700" y="120" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="🌐 INTERFACE WEB" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#9900CC;" vertex="1" parent="1">
+                    <mxGeometry x="880" y="80" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="🎨 UI (HTML/CSS/JS)&#xa;• Upload interface&#xa;• Résultats en temps réel&#xa;• Historique CV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4E8F8;strokeColor=#9900CC;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="880" y="120" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="4" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="6" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#555555;strokeWidth=1;dashed=1;" edge="1" parent="1" source="9" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="620" y="180" as="sourcePoint"/>
+                        <mxPoint x="445" y="220" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#555555;strokeWidth=1;dashed=1;" edge="1" parent="1" source="10" target="7">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="750" y="200" as="sourcePoint"/>
+                        <mxPoint x="445" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#555555;strokeWidth=2;" edge="1" parent="1" source="7" target="12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="💾 STOCKAGE &amp; RÉSULTATS" style="text;html=1;fontSize=14;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#CC0000;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="270" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="📁 uploads/&#xa;CVs téléchargés&#xa;(Temporaire)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8E8E8;strokeColor=#CC0000;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="310" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="📊 results/&#xa;Résultats JSON&#xa;(Historique)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8E8E8;strokeColor=#CC0000;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="310" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="📊 SCORING (6 Catégories)" style="text;html=1;fontSize=12;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="270" width="300" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;div style=&#39;font-size:9px; text-align:left;&#39;&gt;&lt;b&gt;Formation&lt;/b&gt; (15 pts) | &lt;b&gt;Expérience&lt;/b&gt; (35 pts)&lt;br/&gt;&lt;b&gt;Compétences&lt;/b&gt; (20 pts) | &lt;b&gt;Soft Skills&lt;/b&gt; (15 pts)&lt;br/&gt;&lt;b&gt;Langues&lt;/b&gt; (10 pts) | &lt;b&gt;Culture&lt;/b&gt; (5 pts)&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Total : 100 pts&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;Statuts :&lt;br/&gt;💎 TOP MATCH: 85-100&lt;br/&gt;✅ ÉLIGIBLE: 70-84&lt;br/&gt;🔍 À VÉRIFIER: 50-69&lt;br/&gt;❌ REFUSÉ: &amp;lt;50&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E8;strokeColor=#666666;fontSize=9;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="400" y="310" width="280" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="🐳 DÉPLOIEMENT (Docker)" style="text;html=1;fontSize=12;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#0066FF;" vertex="1" parent="1">
+                    <mxGeometry x="750" y="270" width="250" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="🐳 Docker Compose&#xa;• Python 3.11-slim&#xa;• Port 5000&#xa;• Volumes mountés&#xa;• Clé en main" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#0066FF;fontSize=10;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="750" y="310" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Windows: PowerShell&#xa;Linux/Mac: Bash&#xa;&#xa;Commande :&#xa;docker compose up" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#009900;fontSize=9;align=center;" vertex="1" parent="1">
+                    <mxGeometry x="900" y="310" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;endArrow=classic;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1" source="12" target="20">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="📤 FLUX DE DONNÉES" style="text;html=1;fontSize=12;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="450" width="1100" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;div style=&#39;font-size:10px; font-family: monospace;&#39;&gt;&lt;b&gt;1.&lt;/b&gt; CV (PDF/DOCX) → &lt;b&gt;TextExtractor&lt;/b&gt; → Texte nettoyé + Sections&lt;br/&gt;&lt;b&gt;2.&lt;/b&gt; Texte + Mots-clés → &lt;b&gt;CVScorer&lt;/b&gt; → Score par catégorie&lt;br/&gt;&lt;b&gt;3.&lt;/b&gt; Scores + Seuils → &lt;b&gt;Status &amp;amp; Recommendations&lt;/b&gt; → JSON Résultat&lt;br/&gt;&lt;b&gt;4.&lt;/b&gt; JSON → &lt;b&gt;Frontend&lt;/b&gt; → Affichage temps réel&lt;br/&gt;&lt;b&gt;5.&lt;/b&gt; Résultat → &lt;b&gt;results/ folder&lt;/b&gt; → Historique persistant&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFACD;strokeColor=#666666;fontSize=9;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="485" width="1100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="✨ CARACTÉRISTIQUES PRINCIPALES" style="text;html=1;fontSize=12;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#991111;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="630" width="400" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="&lt;div style=&#39;font-size:10px; text-align:left;&#39;&gt;✓ &lt;b&gt;Analyse Automatique&lt;/b&gt; - Extraction texte et scoring intelligent&lt;br/&gt;✓ &lt;b&gt;6 Critères&lt;/b&gt; - Formation, Expérience, Techniques, Soft Skills, Langues, Culture&lt;br/&gt;✓ &lt;b&gt;Calcul dates&lt;/b&gt; - Extraction automatique des périodes d&#39;expérience&lt;br/&gt;✓ &lt;b&gt;Configuration flexible&lt;/b&gt; - Mots-clés éditables en JSON&lt;br/&gt;✓ &lt;b&gt;Historique complet&lt;/b&gt; - Tous les CV analysés sauvegardés&lt;br/&gt;✓ &lt;b&gt;Interface intuitive&lt;/b&gt; - Upload drag-drop, résultats temps réel&lt;br/&gt;✓ &lt;b&gt;100% gratuit&lt;/b&gt; - Aucune API externe requise&lt;br/&gt;✓ &lt;b&gt;Docker ready&lt;/b&gt; - Déploiement clé en main Windows/Linux/Mac&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE8E8;strokeColor=#991111;fontSize=9;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="50" y="665" width="400" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="🚀 DÉMARRAGE RAPIDE" style="text;html=1;fontSize=12;fontStyle=1;align=left;fillColor=none;strokeColor=none;fontColor=#006600;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="630" width="400" height="25" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="&lt;div style=&#39;font-size:10px; text-align:left; font-family: monospace;&#39;&gt;&lt;b&gt;Windows :&lt;/b&gt;&lt;br/&gt;1. Installer Docker Desktop&lt;br/&gt;2. PowerShell : install-windows.ps1&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Linux/Mac :&lt;/b&gt;&lt;br/&gt;1. Installer Docker &amp;amp; Docker Compose&lt;br/&gt;2. Terminal : docker compose up&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Puis :&lt;/b&gt;&lt;br/&gt;3. Ouvrir http://localhost:5000&lt;br/&gt;4. Upload CV (PDF/DOCX)&lt;br/&gt;5. Analyser et consulter le résultat&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8E8;strokeColor=#006600;fontSize=9;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="530" y="665" width="400" height="205" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,25 @@
+services:
+  agent-tri-cv:
+    build: .
+    container_name: agent-tri-cv
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./config:/app/config
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+      - ./templates:/app/templates
+      - ./static:/app/static
+      - ./modules:/app/modules
+      - ./app.py:/app/app.py
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s

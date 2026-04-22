@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats - Agent Tri CV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 Agent Tri CV</h1>
+                <p>Analyse et classification automatique des CV</p>
+            </div>
+            <nav class="nav">
+                <a href="/" class="nav-link">Analyser</a>
+                <a href="/results" class="nav-link active">Résultats</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <section class="results-table-section">
+                <div class="results-header">
+                    <h2>📊 Résultats Triés par Score</h2>
+                    <div class="results-filter">
+                        <input type="checkbox" id="filterTopMatch"> 
+                        <label for="filterTopMatch">💎 Top Match</label>
+                        <input type="checkbox" id="filterEligible"> 
+                        <label for="filterEligible">✅ Éligible</label>
+                        <input type="checkbox" id="filterAVerifier"> 
+                        <label for="filterAVerifier">🔍 À Vérifier</label>
+                        <input type="checkbox" id="filterRefuse"> 
+                        <label for="filterRefuse">❌ Refusé</label>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table id="resultsTable" class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Fichier</th>
+                                <th>Score</th>
+                                <th>Statut</th>
+                                <th>Date</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody"></tbody>
+                    </table>
+                </div>
+                
+                <div id="emptyState" class="empty-state hidden">
+                    <p>Aucune analyse sauvegardée pour le moment.</p>
+                    <a href="/" class="btn btn-primary">Commencer une analyse</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Agent Tri CV - Analyse Intelligente des CV | v1.0</p>
+        </footer>
+    </div>
+
+    <!-- Modal for detailed view -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Charger les résultats au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            loadAllResults();
+            setupFilters();
+        });
+
+        function loadAllResults() {
+            const tableBody = document.getElementById('resultsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            tableBody.innerHTML = '<tr><td colspan="5" class="loading">Chargement...</td></tr>';
+
+            fetch('/get-results')
+                .then(response => response.json())
+                .then(data => {
+                    tableBody.innerHTML = '';
+                    if (data.length === 0) {
+                        emptyState.classList.remove('hidden');
+                    } else {
+                        emptyState.classList.add('hidden');
+                        // Trier par score descendant
+                        data.sort((a, b) => (b.total || 0) - (a.total || 0));
+                        
+                        data.forEach(result => {
+                            const row = createResultRow(result);
+                            tableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    tableBody.innerHTML = '<tr><td colspan="5" class="error">Erreur chargement des résultats</td></tr>';
+                });
+        }
+
+        function createResultRow(result) {
+            const row = document.createElement('tr');
+            row.className = 'result-row';
+            row.dataset.status = result.status;
+            
+            const statusColors = {
+                '💎 TOP MATCH': '#FFD700',
+                '✅ ÉLIGIBLE': '#90EE90',
+                '🔍 À VÉRIFIER': '#87CEEB',
+                '❌ REFUSÉ': '#FFB6C6',
+                '❌ REJETÉ': '#FFB6C6'
+            };
+
+            const bgColor = statusColors[result.status] || '#f0f0f0';
+            
+            const scoreDisplay = result.total || 'N/A';
+            
+            row.innerHTML = `
+                <td class="filename-col">
+                    <span class="filename">${result.filename}</span>
+                </td>
+                <td class="score-col">
+                    <span class="score-badge" style="background-color: ${bgColor}; color: ${getLuminance(bgColor) > 0.5 ? '#000' : '#fff'}">
+                        ${scoreDisplay}%
+                    </span>
+                </td>
+                <td class="status-col">${result.status}</td>
+                <td class="date-col">${new Date(result.timestamp).toLocaleString('fr-FR')}</td>
+                <td class="action-col">
+                    <button class="btn btn-secondary btn-small" onclick="showDetailModal(${JSON.stringify(result).replace(/"/g, '&quot;')})">
+                        Détails
+                    </button>
+                    <button class="btn btn-info btn-small" onclick="openCV('${result.filepath}')" title="Ouvrir le CV">
+                        📄 Ouvrir
+                    </button>
+                </td>
+            `;
+
+            return row;
+        }
+
+        function getLuminance(color) {
+            const hex = color.replace('#', '');
+            const r = parseInt(hex.substr(0, 2), 16) / 255;
+            const g = parseInt(hex.substr(2, 2), 16) / 255;
+            const b = parseInt(hex.substr(4, 2), 16) / 255;
+            return (0.299 * r + 0.587 * g + 0.114 * b);
+        }
+
+        function showDetailModal(result) {
+            const modal = document.getElementById('modal');
+            const modalBody = document.getElementById('modalBody');
+            
+            let html = `
+                <h2>${result.filename}</h2>
+                <div class="modal-info">
+                    <p><strong>Statut:</strong> ${result.status}</p>
+                    <p><strong>Score Total:</strong> <span class="score-highlight">${result.total || 'N/A'}%</span></p>
+                    <p><strong>Date:</strong> ${new Date(result.timestamp).toLocaleString('fr-FR')}</p>
+            `;
+
+            // Scoring par mots-clés
+            html += `<p><strong>Scoring:</strong> Analyse par mots-clés</p>`;
+
+            if (result.ko_reasons) {
+                html += `<div class="ko-detail"><strong>Raisons du rejet:</strong><ul>`;
+                result.ko_reasons.forEach(reason => {
+                    html += `<li>${reason}</li>`;
+                });
+                html += `</ul></div>`;
+            }
+
+            if (result.breakdown) {
+                html += `<div class="breakdown-detail"><strong>📊 Détail du Scoring:</strong>`;
+                for (const [category, data] of Object.entries(result.breakdown)) {
+                    const categoryLabel = {
+                        'formation': '🎓 Formation',
+                        'experience': '💼 Expérience',
+                        'competences_techniques': '⚙️ Compétences Techniques',
+                        'soft_skills': '🤝 Soft Skills',
+                        'langues': '🌍 Langues',
+                        'culture_entreprise': '🏢 Culture Entreprise'
+                    };
+                    
+                    const label = categoryLabel[category] || category;
+                    const percentage = ((data.points / data.max) * 100).toFixed(1);
+                    html += `
+                        <div class="breakdown-item">
+                            <h4>${label}: <span class="points-score">${data.points}/${data.max}</span> pts (${percentage}%)</h4>
+                            ${data.details ? `<ul class="details-list">${data.details.map(d => `<li>${d}</li>`).join('')}</ul>` : ''}
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+
+            // Afficher les analyses RAG si disponibles
+            if (false) { // Section désactivée
+                html += `<div style="display:none;"><strong>Analyses:</strong>`;
+                for (const [category, analysis] of Object.entries(result.rag_analyses)) {
+                    const categoryLabel = {
+                        'formation': '🎓 Formation',
+                        'experience': '💼 Expérience',
+                        'competences': '⚙️ Compétences',
+                        'langues': '🌍 Langues',
+                        'soft_skills': '🤝 Soft Skills'
+                    };
+                    
+                    const label = categoryLabel[category] || category;
+                    if (analysis) {
+                        html += `
+                            <div class="rag-analysis-item">
+                                <!-- RAG analyses removed -->
+                            </div>
+                        `;
+                    }
+                }
+                html += `</div>`;
+            }
+
+            html += `</div>`;
+            modalBody.innerHTML = html;
+            modal.classList.remove('hidden');
+        }
+
+        function setupFilters() {
+            document.getElementById('filterTopMatch').addEventListener('change', filterResults);
+            document.getElementById('filterEligible').addEventListener('change', filterResults);
+            document.getElementById('filterAVerifier').addEventListener('change', filterResults);
+            document.getElementById('filterRefuse').addEventListener('change', filterResults);
+        }
+
+        function filterResults() {
+            const rows = document.querySelectorAll('.result-row');
+            const filters = {
+                '💎 TOP MATCH': document.getElementById('filterTopMatch').checked,
+                '✅ ÉLIGIBLE': document.getElementById('filterEligible').checked,
+                '🔍 À VÉRIFIER': document.getElementById('filterAVerifier').checked,
+                '❌ REFUSÉ': document.getElementById('filterRefuse').checked,
+                '❌ REJETÉ': document.getElementById('filterRefuse').checked,
+            };
+
+            const anyChecked = Object.values(filters).some(v => v);
+
+            rows.forEach(row => {
+                const status = row.dataset.status;
+                const shouldShow = !anyChecked || filters[status];
+                row.style.display = shouldShow ? 'table-row' : 'none';
+            });
+        }
+
+        // Ouvrir le fichier CV
+        function openCV(filepath) {
+            if (!filepath) {
+                alert('Fichier non trouvé');
+                return;
+            }
+            
+            // Ouvrir le fichier en téléchargement
+            const link = document.createElement('a');
+            link.href = `/download-cv?file=${encodeURIComponent(filepath)}`;
+            link.download = filepath.split('/').pop();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Close modal
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('modal');
+            if (e.target === modal || e.target.className === 'modal-close') {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+{
+  "formation": {
+    "niveau_bac3": {
+      "mots_cles": ["licence", "bachelor", "bac+3"],
+      "points": 10
+    },
+    "niveau_bac4_5": {
+      "mots_cles": ["master", "bac+4", "bac+5", "mba", "m2"],
+      "points": 8
+    },
+    "niveau_bac2": {
+      "mots_cles": ["bts", "dut", "bac+2"],
+      "points": 5
+    },
+    "domaine_rh": {
+      "mots_cles": ["rh", "recrutement", "gestion du personnel", "psychologie", "psychologie du travail", "social", "gestion des ressources humaines", "talent acquisition"],
+      "points": 5
+    },
+    "domaine_gestion": {
+      "mots_cles": ["gestion", "administration", "administration des entreprises", "droit", "management"],
+      "points": 3
+    },
+    "domaine_commerce": {
+      "mots_cles": ["commerce", "management commercial"],
+      "points": 2
+    }
+  },
+  "experience": {
+    "duree_senior": {
+      "mots_cles": ["5 ans", "6 ans", "7 ans", "8 ans", "9 ans", "10 ans", "+5", ">5", "plus de 5 ans"],
+      "points": 15
+    },
+    "duree_confirme": {
+      "mots_cles": ["3 ans", "4 ans", "3 à 5", "3-5"],
+      "points": 12
+    },
+    "duree_junior": {
+      "mots_cles": ["1 an", "2 ans", "1 à 3", "1-3"],
+      "points": 8
+    },
+    "duree_debutant": {
+      "mots_cles": ["stage", "alternance", "apprentissage"],
+      "points": 5
+    },
+    "fonction_recrutement_pur": {
+      "mots_cles": ["chargé de recrutement", "talent acquisition", "consultant en recrutement", "spécialiste recrutement", "head hunter", "recruteur"],
+      "points": 15
+    },
+    "fonction_rh_generaliste": {
+      "mots_cles": ["assistant rh", "gestionnaire rh", "responsable rh", "administrateur rh"],
+      "points": 8
+    },
+    "secteur_automobile": {
+      "mots_cles": ["automobile", "auto", "psa", "renault", "dacia", "nissan", "volkswagen", "audi", "bmw", "mercedes", "porsche", "ferrari", "lamborghini", "industrie automobile"],
+      "points": 5
+    }
+  },
+  "competences_techniques": {
+    "sourcing_expert": {
+      "mots_cles": ["linkedin recruiter", "chasse de tête", "approche directe", "indeed", "hellowork", "sourcing avancé", "candidate mining"],
+      "points": 8
+    },
+    "sourcing_standard": {
+      "mots_cles": ["linkedin", "jobboards", "publication annonces"],
+      "points": 4
+    },
+    "excel_avance": {
+      "mots_cles": ["tableau croisé dynamique", "tcd", "recherchev", "vlookup", "formules complexes", "excel avancé", "pivot table", "macros"],
+      "points": 7
+    },
+    "office_standard": {
+      "mots_cles": ["pack office", "word", "powerpoint", "excel"],
+      "points": 4
+    },
+    "ats_logiciel": {
+      "mots_cles": ["teamtailor", "workday", "taleo", "ats", "sirh", "applicant tracking", "cv parsing"],
+      "points": 5
+    },
+    "methodes_entretien": {
+      "mots_cles": ["entretien structuré", "méthode star", "star method", "technique d'entretien"],
+      "points": 3
+    }
+  },
+  "soft_skills": {
+    "rigueur_organisation": {
+      "mots_cles": ["gestion des priorités", "respect des délais", "méthodologie", "sens du détail", "organisation", "structuration"],
+      "points": 5
+    },
+    "rigueur_moyen": {
+      "mots_cles": ["sérieux", "organisé", "rigoureux"],
+      "points": 2
+    },
+    "relationnel_maximal": {
+      "mots_cles": ["écoute active", "diplomatie", "travail collaboratif", "force de proposition", "dynamisme", "aisance relationnelle", "esprit d'équipe"],
+      "points": 5
+    },
+    "relationnel_moyen": {
+      "mots_cles": ["bon relationnel", "sociable"],
+      "points": 2
+    },
+    "ethique_maximal": {
+      "mots_cles": ["confidentialité", "discrétion", "polyvalence", "réactivité", "éthique professionnelle", "adaptabilité"],
+      "points": 5
+    },
+    "ethique_moyen": {
+      "mots_cles": ["savoir s'adapter", "autonomie", "flexibilité"],
+      "points": 2
+    }
+  },
+  "langues": {
+    "francais_expert": {
+      "mots_cles": ["c2", "c1", "expert", "langue maternelle", "natif"],
+      "points": 5,
+      "ko_flag": false
+    },
+    "francais_avance": {
+      "mots_cles": ["français courant", "français avancé"],
+      "points": 4,
+      "ko_flag": false
+    },
+    "francais_intermediaire": {
+      "mots_cles": ["b2", "français opérationnel"],
+      "points": 2,
+      "ko_flag": false
+    },
+    "anglais_avance": {
+      "mots_cles": ["b2", "c1", "c2", "anglais courant", "toeic"],
+      "points": 4
+    },
+    "anglais_intermediaire": {
+      "mots_cles": ["b1", "anglais intermédiaire", "anglais scolaire"],
+      "points": 2
+    },
+    "langue_bonus": {
+      "mots_cles": ["espagnol", "allemand", "italien", "arabe", "chinois", "russe", "bilingue"],
+      "points": 1
+    }
+  },
+  "culture_entreprise": {
+    "adn_industriel": {
+      "mots_cles": ["rigueur", "processus", "qualité", "respect des normes", "usine", "grand groupe", "industrie"],
+      "points": 2
+    },
+    "orientation_resultats": {
+      "mots_cles": ["objectifs", "kpi", "performance", "réactivité", "délais de recrutement", "taux de transformation", "tenue d'objectifs"],
+      "points": 2
+    },
+    "esprit_service": {
+      "mots_cles": ["satisfaction client", "image de marque", "humain", "bienveillance", "expérience candidat"],
+      "points": 1
+    }
+  }
+}

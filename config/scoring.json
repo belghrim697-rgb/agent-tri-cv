@@ -1,0 +1,45 @@
+{
+  "baremes": {
+    "formation": {
+      "poids": 1,
+      "max_points": 15,
+      "description": "Niveau d'études + Pertinence du domaine"
+    },
+    "experience": {
+      "poids": 1,
+      "max_points": 35,
+      "description": "Durée + Type de poste + Secteur automobile"
+    },
+    "competences_techniques": {
+      "poids": 1,
+      "max_points": 20,
+      "description": "Sourcing + Excel + ATS"
+    },
+    "soft_skills": {
+      "poids": 1,
+      "max_points": 15,
+      "description": "Rigueur + Relationnel + Éthique"
+    },
+    "langues": {
+      "poids": 1,
+      "max_points": 10,
+      "description": "Français + Anglais + Bonus"
+    },
+    "culture_entreprise": {
+      "poids": 1,
+      "max_points": 5,
+      "description": "ADN Industriel + KPI + Service"
+    }
+  },
+  "seuils": {
+    "top_match": {"min": 85, "max": 100, "label": "💎 TOP MATCH", "action": "Notification immédiate", "color": "#FFD700"},
+    "eligible": {"min": 70, "max": 84, "label": "✅ ÉLIGIBLE", "action": "À contacter", "color": "#90EE90"},
+    "a_verifier": {"min": 50, "max": 69, "label": "🔍 À VÉRIFIER", "action": "Shortlist secondaire", "color": "#87CEEB"},
+    "refuse": {"min": 0, "max": 49, "label": "❌ REFUSÉ", "action": "Mail de refus", "color": "#FFB6C6"}
+  },
+  "filtres_ko": {
+    "francais_insuffisant": true,
+    "pas_experience_rh": true,
+    "niveau_etudes_trop_bas": true
+  }
+}
